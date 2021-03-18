@@ -5,33 +5,36 @@ import {TextField, Button, Typography, Paper} from '@material-ui/core';
 import FileBase from 'react-file-base64';
 import useStyles from './styles';
 
-
-
 const Form = ({currentId, setCurrentId}) => {
-    const [postData, setPostData] = useState({creator: '', title: '', message: '', tags: '', selectedFile: ''});
-
-    const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === setCurrentId) : null);
-
-    const classes = useStyles();
+    const [postData,
+        setPostData] = useState({creator: '', title: '', message: '', tags: '', selectedFile: ''});
+    const post = useSelector((state) => (currentId
+        ? state.posts.find((message) => message._id === currentId)
+        : null));
     const dispatch = useDispatch();
+    const classes = useStyles();
 
-    useEffect(()=>{
-        if(post) setPostData(post);
-    },[post])
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        if (currentId) {
-          dispatch(updatePost(currentId, postData));
-        
-        } else {
-          dispatch(createPost(postData));
-          
+    useEffect(() => {
+        if (post) 
+            setPostData(post);
         }
-      };
-    
-    const clear = () => {}
+    , [post]);
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+
+        if (currentId) {
+            dispatch(updatePost(currentId, postData));
+        } else {
+            dispatch(createPost(postData));
+        }
+        clear();
+    };
+
+    const clear = () => {
+        setCurrentId(null);
+        setPostData({bs: '', creator: '', title: '', message: '', tags: '', selectedFile: ''})
+    }
 
     return (
         <Paper className={classes.paper}>
@@ -40,11 +43,13 @@ const Form = ({currentId, setCurrentId}) => {
                 noValidate
                 className={`${classes.root} ${classes.form}`}
                 onSubmit={handleSubmit}>
-                <Typography variant="h6">Add to Scrapbook:</Typography>
+                <Typography variant="h6">{currentId
+                        ? `Editing "${post.title}"`
+                        : 'Add to Scrapbook'}</Typography>
                 <TextField
                     name="creator"
                     variant="outlined"
-                    label="Created By:"
+                    label="Creator"
                     fullWidth
                     value={postData.creator}
                     onChange={(e) => setPostData({
@@ -54,18 +59,21 @@ const Form = ({currentId, setCurrentId}) => {
                 <TextField
                     name="title"
                     variant="outlined"
-                    label="Title:"
+                    label="Title"
                     fullWidth
                     value={postData.title}
                     onChange={(e) => setPostData({
                     ...postData,
                     title: e.target.value
                 })}/>
+                
                 <TextField
                     name="message"
                     variant="outlined"
-                    label="Message:"
+                    label="Message"
                     fullWidth
+                    multiline
+                    rows={4}
                     value={postData.message}
                     onChange={(e) => setPostData({
                     ...postData,
@@ -74,24 +82,25 @@ const Form = ({currentId, setCurrentId}) => {
                 <TextField
                     name="tags"
                     variant="outlined"
-                    label="Tags:"
+                    label="Tags (coma separated)"
                     fullWidth
                     value={postData.tags}
                     onChange={(e) => setPostData({
                     ...postData,
-                    tags: e.target.value
+                    tags: e
+                        .target
+                        .value
+                        .split(',')
                 })}/>
-                <div className={classes.fileInput}>
-                    <FileBase
-                        type="file"
-                        multiple={false}
-                        onDone={({base64}) => setPostData({
-                        ...postData,
-                        selectedFile: base64
-                    })}/>
-                </div>
+                <div className={classes.fileInput}><FileBase
+                    type="file"
+                    multiple={false}
+                    onDone={({base64}) => setPostData({
+            ...postData,
+            selectedFile: base64
+        })}/></div>
                 <Button
-                    classname={classes.buttonSubmit}
+                    className={classes.buttonSubmit}
                     variant="contained"
                     color="primary"
                     size="large"
@@ -101,8 +110,8 @@ const Form = ({currentId, setCurrentId}) => {
                     variant="contained"
                     color="secondary"
                     size="small"
-                    onclick={clear}
-                    fullWidth>Clear Form</Button>
+                    onClick={clear}
+                    fullWidth>Clear</Button>
             </form>
         </Paper>
     );
