@@ -9,7 +9,7 @@ import Icon from './icon';
 import { signin, signup } from '../../actions/auth';
 import { AUTH } from '../../constants/actionTypes';
 import useStyles from './styles';
-import Input from './Input';
+import Input from './Input.js';
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
