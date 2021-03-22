@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-// const API = axios.create({ baseURL: 'https://memories-backend.zeet.app' });
-// const API = axios.create({baseURL: 'https://sigma-snaps.herokuapp.com' });
-const API = axios.create({baseURL: 'http://localhost:5000' });
+
+const API = axios.create({baseURL: 'https://sigma-snaps.herokuapp.com' });
+
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {
