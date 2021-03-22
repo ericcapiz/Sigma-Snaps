@@ -7,25 +7,22 @@ export default makeStyles((theme) => ({
     margin: '30px 0',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    padding: '10px 50px',
+    padding: '10px 10px',
   },
   heading: {
     color: 'rgba(0,183,255, 1)',
     textDecoration: 'none',
   },
-  image: {
-    marginLeft: '15px',
-  },
   toolbar: {
     display: 'flex',
-    justifyContent: 'flex-end',
-    width: '400px',
+    justifyContent: 'flex-start',
+    width: '300px',
   },
   profile: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     width: '400px',
   },
   userName: {
