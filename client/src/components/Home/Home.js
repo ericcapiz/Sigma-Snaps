@@ -30,8 +30,9 @@ const Home = () => {
     }, [currentId, dispatch]);
 
     const searchPosts = () =>{
-        if(search.trim()){
-            dispatch(getPostsBySearch({search, tags: tags.join(',')}))
+        if(search.trim() || tags){
+            dispatch(getPostsBySearch({search, tags: tags.join(',')}));
+            history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`)
         }else {
             history.push('/')
         }
