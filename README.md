@@ -1,6 +1,6 @@
 # Sigma Snaps
 
-![Project Image](https://i.ibb.co/Bj9SC6D/snaps.png)
+![Project Image](https://i.ibb.co/HhQjb04/snaps.png)
 
 > This app will allow users to create posts, like posts including other users posts and delete their own posts.
 
@@ -17,7 +17,7 @@
 
 ## Description
 
-This app will allow users to register/log-in and upload a post that will contain an image, title, message and tags. Each post will render the users name and display how long ago the post was created. Users will be able to like their own posts and other users post as well as delete only their own posts. Users who are not logged in can only view posts and will not be able to like posts. This is a MERN Stack App that has CRUD features, JWT for login authentications as well as the ability to login with their google account. View the app at https://sigma-snaps.netlify.app/
+This app will allow users to register/log-in and upload a post that will contain an image, title, message and tags. Each post will render the users name and display how long ago the post was created. Users can click on each post to get the posts details page as well as recommendations based on if there are posts with the same tag(s). App will sort posts with the newest posts displayed first. App also uses pagination and will display 8 posts per page. Users will be able to like their own posts and other users post as well as delete only their own posts. Users who are not logged in can only view posts and will not be able to like posts. This is a MERN Stack App that has CRUD features, JWT for login authentications as well as the ability to login with their google account. View the app at https://sigma-snaps.netlify.app/
 
 #### Technologies/Libraries
 
