@@ -7,9 +7,12 @@ export default makeStyles((theme) => ({
     margin: '30px 0',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '10px 10px',
+    padding: '10px 50px',
+    [theme.breakpoints.down('sm')]:{
+      flexDirection: 'column',
+    },
   },
   heading: {
     color: 'rgba(0,183,255, 1)',
@@ -18,16 +21,26 @@ export default makeStyles((theme) => ({
   toolbar: {
     display: 'flex',
     justifyContent: 'flex-start',
-    width: '300px',
+    width: '100px',
   },
   profile: {
     display: 'flex',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     width: '400px',
+    alignItems: 'center',
+    [theme.breakpoints.down('sm')]: {
+      width: 'auto',
+      marginTop: 20,
+      justifyContent: 'center',
+    },
   },
   userName: {
     display: 'flex',
     alignItems: 'center',
+    textAlign: 'center',
+  },
+  logout: {
+    marginLeft: '10px',
   },
   brandContainer: {
     display: 'flex',

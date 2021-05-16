@@ -25,10 +25,6 @@ const Home = () => {
     const searchQuery = query.get('searchQuery');
     const styles = useStyles();
 
-    useEffect(() => {
-        dispatch(getPosts());
-    }, [currentId, dispatch]);
-
     const searchPosts = () =>{
         if(search.trim() || tags){
             dispatch(getPostsBySearch({search, tags: tags.join(',')}));
@@ -87,7 +83,7 @@ const Home = () => {
                             </AppBar>
                             <Form currentId={currentId} setCurrentId={setCurrentId}/>
                             <Paper className={classes.pagination} elevation={6}>
-                                <Pagination />
+                                <Pagination page={page} />
                             </Paper>
                         </Grid>
                     </Grid>
