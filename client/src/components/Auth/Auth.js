@@ -93,9 +93,12 @@ const SignUp = () => {
             <Grid item>
               <Button onClick={switchMode}>
                 { isSignup ? 'Already have an account? Sign in' : "Don't have an account? Sign Up" }
+               
               </Button>
             </Grid>
           </Grid>
+              <p>Demo Login: test1@gmail.com</p>
+              <p> Password: testing1</p>
         </form>
       </Paper>
     </Container>
