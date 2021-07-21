@@ -1,28 +1,28 @@
 import {useEffect} from 'react';
-import moment from 'moment'
-import {useDispatch, useSelector} from 'react-redux';
-import {useParams, useHistory} from 'react-router-dom';
 import {Paper, Typography, CircularProgress, Divider} from '@material-ui/core';
+import {useDispatch, useSelector} from 'react-redux';
+import moment from 'moment'
+import {useParams, useHistory} from 'react-router-dom';
+import {getPost,  getPostsBySearch} from '../../actions/posts';
 import useStyles from './styles';
-import {getPost,  getPostsBySearch} from '../../actions/posts'
 
 
 const PostDetails = () => {
     const {post, posts, isLoading} = useSelector((state) => state.posts);
     const dispatch = useDispatch();
     const history = useHistory();
-    const {id} = useParams();
     const classes = useStyles();
+    const {id} = useParams();
 
     useEffect(() => {
         dispatch(getPost(id));
-    },[id])
+    },[id,dispatch])
 
     useEffect(() => {
       if(post){
         dispatch( getPostsBySearch({ search: 'none', tags: post?.tags.join(',')}));
       }
-    },[post])
+    },[post,dispatch])
 
     if(!post) return null;
 
@@ -67,7 +67,7 @@ const PostDetails = () => {
                   <Typography gutterBottom variant="subtitle2">{name}</Typography>
                   <Typography gutterBottom variant="subtitle2">{message}</Typography>
                   <Typography gutterBottom variant="subtitle1">Likes: {likes.length}</Typography>
-                  <img src={selectedFile} width="200px" />
+                  <img alt="selected file" src={selectedFile} width="200px" />
                 </div>
               ))}
             </div>

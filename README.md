@@ -52,6 +52,8 @@ This app will allow users to register/log-in and upload a post that will contain
 - NPM Install
 - NPM Start
 
+**DEMO LOGIN INFO: Email: test1@gmail.com Password: testing1
+
 ## License
 
 MIT License

@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import {Link,useHistory,useLocation} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
+import * as actionType from '../../constants/actionTypes';
 import {AppBar, Button, Toolbar, Typography} from '@material-ui/core';
 import useStyles from './styles';
 import decode from 'jwt-decode';
@@ -8,18 +9,20 @@ import decode from 'jwt-decode';
 const Navbar = () => {
     
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-
-    const classes = useStyles();
     const dispatch = useDispatch();
-    const history = useHistory();
     const location = useLocation();
+    const history = useHistory();
+    const classes = useStyles();
+
 
 
     const logout = () => {
-        dispatch({type: 'LOGOUT'})
-        history.push('/');
+        dispatch({ type: actionType.LOGOUT });
+    
+        history.push('/auth');
+    
         setUser(null);
-    }
+      };
 
     useEffect(()=>{
         const token = user?.token;
@@ -35,7 +38,7 @@ const Navbar = () => {
 
 
     return (
-        <div>
+        
             <AppBar className={classes.appBar} position="static" color="inherit">
                 <div className={classes.brandContainer}>
                     <Typography component= {Link} to= "/" className={classes.heading} variant="h3" align="center">Sigma Snaps</Typography>
@@ -52,7 +55,7 @@ const Navbar = () => {
                     )}
                 </Toolbar>
             </AppBar>
-        </div>
+        
     )
 }
 
